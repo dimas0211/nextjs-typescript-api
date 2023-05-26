@@ -1,17 +1,10 @@
-import React from "react";
-import { useRouter } from 'next/router';
-import Image, { StaticImageData } from "next/image";
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 import { CardProps } from '../types';
 
-
-
-const Card: React.FC<CardProps> = (
-  { name, image, price, high, low, id }: CardProps
-) => {
-  const router = useRouter();
-  const goToCurrencyCardPage = () => router.push(`currency/${id}`);
-
+const Card: React.FC<CardProps> = ({ name, image, price, high, low, id }: CardProps) => {
   return (
     <div className="flex flex-col rounded border-solid border-1 border-zinc-500 bg-white drop-shadow-lg">
       <Image
@@ -32,12 +25,14 @@ const Card: React.FC<CardProps> = (
         </ul>
       </div>
       <div className="p-4 mx-auto">
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded " onClick={goToCurrencyCardPage}>
+        <Link
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          href={`currency/${id}`}>
           More
-        </button>
+        </Link>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Card;
